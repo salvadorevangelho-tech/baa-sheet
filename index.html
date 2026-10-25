@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="One page. 20 minutes. Every Sunday. The weekly planning system by Building Above Average.">
+<title>BAA Sheet — Building Above Average</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0D0D0B;
+  --ink-2:   #141412;
+  --ink-3:   #1A1A18;
+  --rule:    #252523;
+  --rule-2:  #313130;
+  --paper:   #F2EFE8;
+  --paper-2: #C8C5BC;
+  --paper-3: #7A7870;
+  --green:   #8BC34A;
+  --gbg:     #0E1609;
+  --gborder: #2D4015;
+  --w: 720px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{font-size:16px;scroll-behavior:smooth;}
+body{
+  background:var(--ink);color:var(--paper);
+  font-family:'Archivo',sans-serif;font-weight:300;
+  line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none;}
+
+/* ── LAYOUT ── */
+.page{max-width:var(--w);margin:0 auto;padding:0 32px;}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,13,11,0.96);
+  backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--rule);
+}
+.nav-inner{
+  max-width:var(--w);margin:0 auto;padding:0 32px;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+}
+.nav-brand{display:flex;align-items:baseline;gap:12px;}
+.nav-logo{font-family:'Archivo Black',sans-serif;font-size:17px;letter-spacing:0.06em;color:var(--paper);}
+.nav-div{width:1px;height:14px;background:var(--rule-2);}
+.nav-prod{font-size:12px;font-weight:400;color:var(--paper-3);letter-spacing:0.02em;}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--green);color:var(--ink);
+  font-family:'Archivo',sans-serif;font-size:13px;font-weight:700;
+  padding:10px 22px;border-radius:2px;border:none;cursor:pointer;
+  transition:background 0.2s;white-space:nowrap;text-decoration:none;
+  letter-spacing:0.01em;
+}
+.btn:hover{background:#9FD15A;}
+.btn-lg{font-size:15px;padding:16px 36px;}
+
+/* ── HERO ── */
+.hero{padding:90px 0 72px;border-bottom:1px solid var(--rule);position:relative;}
+.hero-tag{
+  font-family:'Archivo Black',sans-serif;font-size:11px;
+  letter-spacing:0.18em;color:var(--green);margin-bottom:28px;
+  display:flex;align-items:center;gap:14px;
+}
+.hero-tag::after{content:'';flex:1;height:1px;background:var(--rule-2);max-width:60px;}
+h1{
+  font-family:'Archivo Black',sans-serif;
+  font-size:clamp(44px,8vw,72px);
+  line-height:0.97;letter-spacing:-0.03em;color:var(--paper);
+  margin-bottom:40px;margin-left:-4px;
+}
+.hero-cols{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+@media(max-width:580px){.hero-cols{grid-template-columns:1fr;gap:32px;}}
+.hero-body{font-size:17px;font-weight:300;color:var(--paper-2);line-height:1.7;}
+.hero-body strong{color:var(--paper);font-weight:500;}
+.hero-action{display:flex;flex-direction:column;gap:12px;}
+.hero-action .btn-lg{align-self:flex-start;}
+.hero-free{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-3);letter-spacing:0.04em;}
+
+/* ── SCENE — moved up, right after hero ── */
+.scene-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.scene{
+  padding:40px 0;
+  border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:48px 1fr;gap:28px;align-items:start;
+  margin-bottom:40px;
+}
+@media(max-width:480px){.scene{grid-template-columns:1fr;gap:16px;}}
+.scene-mark{
+  font-family:'Archivo Black',sans-serif;font-size:52px;
+  line-height:1;color:var(--rule-2);user-select:none;padding-top:4px;
+}
+.scene-text{
+  font-family:'IBM Plex Mono',monospace;font-size:14px;
+  line-height:1.9;color:var(--paper-2);font-style:italic;
+}
+.scene-close{
+  margin-top:20px;font-size:16px;font-weight:500;
+  color:var(--paper);font-family:'Archivo',sans-serif;
+}
+.scene-close em{color:var(--green);font-style:normal;}
+.problem-cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+@media(max-width:580px){.problem-cols{grid-template-columns:1fr;gap:24px;}}
+.pcol{font-size:15px;color:var(--paper-3);line-height:1.75;font-weight:300;}
+.pcol strong{color:var(--paper);font-weight:500;}
+.pcol p+p{margin-top:14px;}
+
+/* ── PRODUCT MOCKUP ── */
+.mockup-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.sec-h{
+  font-family:'Archivo Black',sans-serif;
+  font-size:clamp(26px,4vw,36px);
+  line-height:1.1;letter-spacing:-0.02em;color:var(--paper);
+  margin-bottom:8px;
+}
+.sec-sub{font-size:15px;color:var(--paper-3);font-weight:300;margin-bottom:40px;line-height:1.6;}
+.sec-sub strong{color:var(--paper);font-weight:500;}
+
+/* SVG MOCKUP */
+.mockup-wrap{
+  background:var(--ink-2);border:1px solid var(--rule-2);
+  border-radius:4px;padding:28px;margin-bottom:40px;
+  overflow:hidden;position:relative;
+}
+.mockup-wrap::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;
+  background:radial-gradient(ellipse,rgba(139,195,74,0.05) 0%,transparent 70%);
+  pointer-events:none;
+}
+.mockup-inner{
+  background:var(--ink-3);border:1px solid var(--rule);
+  border-radius:3px;padding:20px 22px;
+  font-family:'IBM Plex Mono',monospace;
+}
+.m-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-bottom:12px;border-bottom:1px solid var(--rule);margin-bottom:16px;
+}
+.m-brand{font-size:9px;font-weight:500;color:var(--green);letter-spacing:0.14em;}
+.m-week{font-size:9px;color:var(--paper-3);letter-spacing:0.06em;}
+.m-section{margin-bottom:14px;}
+.m-section:last-child{margin-bottom:0;}
+.m-label{
+  font-size:8px;font-weight:500;color:var(--green);
+  letter-spacing:0.12em;margin-bottom:6px;
+}
+.m-line{
+  height:5px;background:var(--rule);border-radius:2px;
+  margin-bottom:4px;overflow:hidden;
+}
+.m-fill{height:100%;border-radius:2px;background:var(--rule-2);}
+.m-fill.g{background:var(--green);opacity:0.55;}
+.m-fill.g2{background:var(--green);opacity:0.35;}
+.m-row{display:flex;gap:6px;margin-bottom:4px;}
+.m-tag{
+  font-size:7px;color:var(--paper-3);letter-spacing:0.06em;
+  white-space:nowrap;padding-top:1px;
+}
+.m-days{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+.m-day{
+  height:20px;background:var(--rule);border-radius:2px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:6px;color:var(--paper-3);letter-spacing:0.06em;
+}
+.m-day.hi{background:var(--gborder);color:var(--green);}
+.m-energy{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;}
+.m-block{
+  background:var(--rule);border-radius:2px;padding:6px;
+  font-size:6.5px;color:var(--paper-3);letter-spacing:0.06em;
+  line-height:1.4;
+}
+.m-block span{color:var(--green);display:block;margin-bottom:2px;font-weight:500;}
+.m-qs{display:flex;flex-direction:column;gap:5px;}
+.m-q{
+  height:12px;background:var(--rule);border-radius:2px;
+  position:relative;overflow:hidden;
+}
+.m-q.p1{border-left:2px solid var(--green);}
+
+/* ── INSIDE TABLE ── */
+.inside-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.inside-table{width:100%;border-top:1px solid var(--rule);}
+.inside-row{
+  display:grid;grid-template-columns:48px 1fr 1fr;
+  gap:0;padding:24px 0;border-bottom:1px solid var(--rule);align-items:start;
+  transition:background 0.15s;
+}
+.inside-row:hover{background:var(--ink-2);margin:0 -32px;padding-left:32px;padding-right:32px;}
+@media(max-width:540px){
+  .inside-row{grid-template-columns:32px 1fr;}
+  .inside-row:hover{margin:0;padding-left:0;padding-right:0;}
+}
+.i-num{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--green);padding-top:3px;}
+.i-name{font-size:15px;font-weight:600;color:var(--paper);padding-top:2px;}
+.i-desc{font-size:13px;color:var(--paper-3);line-height:1.6;font-weight:300;}
+@media(max-width:540px){
+  .i-name{grid-column:2;}
+  .i-desc{grid-column:2;margin-top:4px;}
+}
+
+/* ── AUDIENCE ── */
+.audience-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.audience-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;overflow:hidden;margin-top:36px;
+}
+@media(max-width:520px){.audience-grid{grid-template-columns:1fr;}}
+.aud-col{background:var(--ink-2);padding:28px;}
+.aud-title{
+  font-size:11px;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;margin-bottom:20px;
+  padding-bottom:14px;border-bottom:1px solid var(--rule);
+}
+.aud-col.yes .aud-title{color:var(--green);}
+.aud-col.no  .aud-title{color:var(--paper-3);}
+.aud-item{
+  display:flex;align-items:baseline;gap:10px;
+  font-size:13.5px;color:var(--paper-3);
+  font-weight:300;line-height:1.55;
+  padding:9px 0;border-bottom:1px solid var(--rule);
+}
+.aud-item:last-child{border-bottom:none;padding-bottom:0;}
+.aud-mark{font-family:'IBM Plex Mono',monospace;font-size:14px;flex-shrink:0;line-height:1;}
+.aud-col.yes .aud-mark{color:var(--green);}
+.aud-col.no  .aud-mark{color:var(--rule-2);}
+
+/* ── HOW IT WORKS ── */
+.how-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.timeline{margin-top:40px;position:relative;}
+.timeline::before{
+  content:'';position:absolute;left:7px;top:8px;bottom:8px;width:1px;
+  background:linear-gradient(to bottom,var(--green),var(--rule));
+}
+.tl-item{display:flex;gap:28px;padding:0 0 40px 0;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{
+  width:15px;height:15px;flex-shrink:0;margin-top:4px;
+  border-radius:50%;background:var(--ink);
+  border:1px solid var(--green);position:relative;z-index:1;
+}
+.tl-item:first-child .tl-dot{background:var(--green);}
+.tl-step{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--green);letter-spacing:0.1em;margin-bottom:6px;}
+.tl-title{font-size:17px;font-weight:600;color:var(--paper);margin-bottom:6px;line-height:1.3;}
+.tl-body{font-size:14px;color:var(--paper-3);font-weight:300;line-height:1.65;}
+
+/* ── FAQ ── */
+.faq-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.faq-list{margin-top:40px;}
+.faq-item{border-bottom:1px solid var(--rule);}
+.faq-q{
+  width:100%;background:none;border:none;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:20px;padding:20px 0;
+  font-family:'Archivo',sans-serif;font-size:15px;font-weight:500;color:var(--paper);
+  text-align:left;transition:color 0.15s;
+}
+.faq-q:hover{color:var(--green);}
+.faq-icon{
+  flex-shrink:0;width:20px;height:20px;
+  border:1px solid var(--rule-2);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform 0.25s,background 0.15s,border-color 0.15s;
+}
+.faq-icon svg{width:10px;height:10px;stroke:var(--paper-3);transition:stroke 0.15s;}
+.faq-q:hover .faq-icon{border-color:var(--green);}
+.faq-q:hover .faq-icon svg{stroke:var(--green);}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:var(--green);border-color:var(--green);}
+.faq-item.open .faq-icon svg{stroke:var(--ink);}
+.faq-a{display:none;padding-bottom:20px;font-size:14px;color:var(--paper-3);font-weight:300;line-height:1.75;max-width:520px;}
+.faq-item.open .faq-a{display:block;}
+
+/* ── ABOUT ── */
+.about-section{padding:72px 0;border-bottom:1px solid var(--rule);}
+.about-card{
+  margin-top:36px;
+  background:var(--ink-2);border:1px solid var(--rule-2);
+  border-radius:3px;padding:36px;
+  display:grid;grid-template-columns:1fr 2px 1fr;gap:36px;align-items:center;
+}
+@media(max-width:560px){.about-card{grid-template-columns:1fr;gap:24px;}}
+.about-div{width:1px;background:var(--rule);align-self:stretch;}
+@media(max-width:560px){.about-div{display:none;}}
+.about-left{}
+.about-name{font-family:'Archivo Black',sans-serif;font-size:20px;color:var(--paper);letter-spacing:-0.01em;margin-bottom:6px;}
+.about-url{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--paper-3);letter-spacing:0.04em;margin-bottom:20px;}
+.about-context{font-size:13.5px;color:var(--paper-3);font-weight:300;line-height:1.7;}
+.about-context strong{color:var(--paper);font-weight:500;}
+.about-right{}
+.about-quote-mark{
+  font-family:'Archivo Black',sans-serif;font-size:40px;
+  color:var(--rule-2);line-height:1;margin-bottom:8px;user-select:none;
+}
+.about-quote{
+  font-size:17px;font-weight:500;color:var(--paper);line-height:1.55;
+  font-style:italic;
+}
+
+/* ── FINAL CTA ── */
+.cta-section{
+  padding:100px 0 90px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:600px;height:300px;
+  background:radial-gradient(ellipse,rgba(139,195,74,0.07) 0%,transparent 65%);
+  pointer-events:none;
+}
+.cta-h{
+  font-family:'Archivo Black',sans-serif;
+  font-size:clamp(32px,5.5vw,52px);
+  line-height:1.0;letter-spacing:-0.025em;
+  color:var(--paper);margin-bottom:14px;
+}
+.cta-sub{font-size:15px;color:var(--paper-3);font-weight:300;margin-bottom:36px;line-height:1.6;}
+.cta-sub strong{color:var(--paper);font-weight:500;}
+.cta-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+
+/* ── URGENCY LINE ── */
+.urgency{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:11px;color:var(--paper-3);letter-spacing:0.05em;
+  margin-top:8px;
+}
+.urgency strong{color:var(--green);}
+
+.guarantee{
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;color:var(--paper-3);letter-spacing:0.04em;
+  max-width:380px;text-align:center;line-height:1.65;
+}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--rule);padding:28px 0;}
+.footer-inner{
+  max-width:var(--w);margin:0 auto;padding:0 32px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:8px;
+}
+.fl{font-size:12px;color:var(--paper-3);font-weight:300;}
+.fc{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--green);letter-spacing:0.14em;}
+.fr{font-size:12px;color:var(--paper-3);font-weight:300;}
+@media(max-width:480px){
+  .footer-inner,.page,.nav-inner{padding-left:20px;padding-right:20px;}
+  .footer-inner{flex-direction:column;text-align:center;}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">
+      <span class="nav-logo">BAA</span>
+      <div class="nav-div"></div>
+      <span class="nav-prod">Building Above Average</span>
+    </div>
+    <a class="btn" href="https://buildingaboveaverage.gumroad.com/l/muzwjz" target="_blank">Get it free</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="page">
+    <div class="hero-tag">BAA Sheet &nbsp;&nbsp; Weekly System</div>
+    <h1>You know what<br>you want.<br>Why aren't you<br>following through?</h1>
+    <div class="hero-cols">
+      <div class="hero-body">
+        You are not lazy. You are not undisciplined.<br>
+        <strong>You are operating without a system.</strong>
+        <br><br>
+        One page. Twenty minutes. Every Sunday. That is the whole thing.
+      </div>
+      <div class="hero-action">
+        <a class="btn btn-lg" href="https://buildingaboveaverage.gumroad.com/l/muzwjz" target="_blank">
+          Get the BAA Sheet — Free
+        </a>
+        <span class="hero-free">100% free · Instant download · No card required</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENE — directly after hero -->
+<section class="scene-section">
+  <div class="page">
+    <div class="scene">
+      <div class="scene-mark">"</div>
+      <div>
+        <div class="scene-text">
+          You planned to work on your project tonight.<br>
+          It is 10pm. You watched 3 YouTube videos about working on it.<br>
+          You opened Notion. You closed Notion.<br>
+          Now you are in bed wondering what happened.
+        </div>
+        <div class="scene-close">
+          That is not a discipline problem.<br>
+          <em>That is a design problem.</em>
+        </div>
+      </div>
+    </div>
+
+    <div class="problem-cols">
+      <div class="pcol">
+        <p>You were busy. You had a full day. You checked things off. But Friday comes and the things that actually matter are exactly where they were on Monday.</p>
+        <p>That feeling is not a character flaw. <strong>It is a design problem.</strong></p>
+      </div>
+      <div class="pcol">
+        <p>You have tried the templates. The habit trackers. The morning routines. They worked for four days. Then life happened and the system collapsed.</p>
+        <p><strong>The problem was never your discipline. It was the complexity.</strong> Every system you tried added more to manage. The BAA Sheet removes it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT MOCKUP -->
+<section class="mockup-section">
+  <div class="page">
+    <h2 class="sec-h">One page. Five sections.</h2>
+    <p class="sec-sub">Not a course. Not a template you have to maintain.<br><strong>Just the decisions that matter before the week starts.</strong></p>
+
+    <div class="mockup-wrap">
+      <div class="mockup-inner">
+        <div class="m-header">
+          <span class="m-brand">BAA SHEET</span>
+          <span class="m-week">WEEK OF ___________</span>
+        </div>
+
+        <div class="m-section">
+          <div class="m-label">01 · IDENTITY STATEMENT</div>
+          <div class="m-line"><div class="m-fill g" style="width:88%"></div></div>
+        </div>
+
+        <div class="m-section">
+          <div class="m-label">02 · THREE PRIORITIES</div>
+          <div class="m-row">
+            <div class="m-line" style="flex:1"><div class="m-fill g" style="width:75%"></div></div>
+            <div class="m-tag">P1</div>
+          </div>
+          <div class="m-row">
+            <div class="m-line" style="flex:1"><div class="m-fill" style="width:60%"></div></div>
+            <div class="m-tag">P2</div>
+          </div>
+          <div class="m-row">
+            <div class="m-line" style="flex:1"><div class="m-fill" style="width:45%"></div></div>
+            <div class="m-tag">P3</div>
+          </div>
+        </div>
+
+        <div class="m-section">
+          <div class="m-label">03 · DAILY ONE THING</div>
+          <div class="m-days">
+            <div class="m-day hi">MON</div>
+            <div class="m-day">TUE</div>
+            <div class="m-day hi">WED</div>
+            <div class="m-day">THU</div>
+            <div class="m-day hi">FRI</div>
+            <div class="m-day">SAT</div>
+            <div class="m-day">SUN</div>
+          </div>
+        </div>
+
+        <div class="m-section">
+          <div class="m-label">04 · ENERGY MAP</div>
+          <div class="m-energy">
+            <div class="m-block"><span>MORNING</span>Deep work</div>
+            <div class="m-block"><span>AFTERNOON</span>Reactive</div>
+            <div class="m-block"><span>EVENING</span>Review</div>
+          </div>
+        </div>
+
+        <div class="m-section">
+          <div class="m-label">05 · END OF WEEK REFLECTION</div>
+          <div class="m-qs">
+            <div class="m-q p1"></div>
+            <div class="m-q"></div>
+            <div class="m-q"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="inside-table">
+      <div class="inside-row">
+        <div class="i-num">01</div>
+        <div class="i-name">Identity Statement</div>
+        <div class="i-desc">Who are you deciding to be this week. Written before anything else. This is what makes the system stick beyond day four.</div>
+      </div>
+      <div class="inside-row">
+        <div class="i-num">02</div>
+        <div class="i-name">Three Priorities</div>
+        <div class="i-desc">Not tasks. Outcomes that must move. Three maximum. The constraint forces the decision you have been avoiding all week.</div>
+      </div>
+      <div class="inside-row">
+        <div class="i-num">03</div>
+        <div class="i-name">Daily One Thing</div>
+        <div class="i-desc">One action per day that moves Priority 1 forward. You open the sheet each morning and already know what to do. Zero decision fatigue.</div>
+      </div>
+      <div class="inside-row">
+        <div class="i-num">04</div>
+        <div class="i-name">Energy Map</div>
+        <div class="i-desc">Morning, afternoon, evening. Deep work goes where your brain is sharpest. Stop planning around the clock. Plan around your energy.</div>
+      </div>
+      <div class="inside-row">
+        <div class="i-num">05</div>
+        <div class="i-name">End of Week Reflection</div>
+        <div class="i-desc">Three questions. Without this section it is just a planner. With it, week two is better than week one. This is where the system compounds.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section class="audience-section">
+  <div class="page">
+    <h2 class="sec-h">Built for one specific person.</h2>
+    <div class="audience-grid">
+      <div class="aud-col yes">
+        <div class="aud-title">This is for you</div>
+        <div class="aud-item"><span class="aud-mark">+</span>You have output but nothing is compounding.</div>
+        <div class="aud-item"><span class="aud-mark">+</span>You start strong Monday and fall off Wednesday.</div>
+        <div class="aud-item"><span class="aud-mark">+</span>You have tried Notion and abandoned it by Thursday.</div>
+        <div class="aud-item"><span class="aud-mark">+</span>You know what you want but cannot follow through consistently.</div>
+        <div class="aud-item"><span class="aud-mark">+</span>You want one simple system that actually sticks.</div>
+      </div>
+      <div class="aud-col no">
+        <div class="aud-title">This is not for you</div>
+        <div class="aud-item"><span class="aud-mark">−</span>You want another complex system to manage.</div>
+        <div class="aud-item"><span class="aud-mark">−</span>You are looking for a course or a program.</div>
+        <div class="aud-item"><span class="aud-mark">−</span>You are not willing to sit down for 20 minutes on Sunday.</div>
+        <div class="aud-item"><span class="aud-mark">−</span>You think more information is the answer.</div>
+        <div class="aud-item"><span class="aud-mark">−</span>You want to keep collecting frameworks.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="page">
+    <h2 class="sec-h">Simple on purpose.</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-step">STEP 01</div>
+          <div class="tl-title">Download the BAA Sheet.</div>
+          <div class="tl-body">One PDF. Print one copy per week and write on it with a pen. Or fill it digitally — open it, type into it, save with the date. BAA_Sheet_Nov3.pdf. Your choice.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-step">STEP 02</div>
+          <div class="tl-title">Every Sunday, fill it in 20 minutes.</div>
+          <div class="tl-body">Identity first. Three priorities. One action per day. Energy map. Twenty minutes and the week has a shape.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-step">STEP 03</div>
+          <div class="tl-title">Execute. Do the one thing each day.</div>
+          <div class="tl-body">Open the sheet each morning. You already know what to do. No decisions. Just execute the one thing you wrote down on Sunday.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div>
+          <div class="tl-step">STEP 04</div>
+          <div class="tl-title">Reflect Sunday night. Repeat.</div>
+          <div class="tl-body">Three questions. What moved. What wasted time. What you carry forward. Week two is better than week one. That is the compound.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="page">
+    <h2 class="sec-h">Questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">Is it really free?<span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke-width="1.5"/><line x1="1" y1="6" x2="11" y2="6" stroke-width="1.5"/></svg></span></button>
+        <div class="faq-a">Yes. 100% free. No card, no subscription, no upsell. Download it and it is yours to keep forever.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">I have tried planners before and abandoned them. Why is this different?<span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke-width="1.5"/><line x1="1" y1="6" x2="11" y2="6" stroke-width="1.5"/></svg></span></button>
+        <div class="faq-a">Most planners give you more to manage. The BAA Sheet is one page with five sections — it removes decisions instead of adding them. You do not maintain it. You fill it in 20 minutes on Sunday and that is it for the week.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">I do not have time for another system.<span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke-width="1.5"/><line x1="1" y1="6" x2="11" y2="6" stroke-width="1.5"/></svg></span></button>
+        <div class="faq-a">Twenty minutes on Sunday. That is the only time it asks from you. The rest of the week you just do the one thing you already wrote down. No daily setup. No maintenance.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Digital or paper?<span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke-width="1.5"/><line x1="1" y1="6" x2="11" y2="6" stroke-width="1.5"/></svg></span></button>
+        <div class="faq-a">Both. Print one copy per week and write on it with a pen for the best experience. Or fill it digitally and save each week with the date. You get both versions in the download.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What if I miss a week?<span class="faq-icon"><svg viewBox="0 0 12 12" fill="none"><line x1="6" y1="1" x2="6" y2="11" stroke-width="1.5"/><line x1="1" y1="6" x2="11" y2="6" stroke-width="1.5"/></svg></span></button>
+        <div class="faq-a">Start again next Sunday. The reflection section is built to get you back on track, not to make you feel behind. Missing a week is not failure. Not starting again is.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section">
+  <div class="page">
+    <h2 class="sec-h">Not a theory.</h2>
+    <div class="about-card">
+      <div class="about-left">
+        <div class="about-name">Salvador Evangelho</div>
+        <div class="about-url">buildingaboveaverage.com</div>
+
+      </div>
+      <div class="about-div"></div>
+      <div class="about-right">
+        <div class="about-quote-mark">"</div>
+        <div class="about-quote">
+          The BAA Sheet is the exact system I use every week. The one page I fill in every Sunday that makes everything else possible.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="cta-glow"></div>
+  <div class="page">
+    <h2 class="cta-h">End this Sunday<br>knowing the right<br>things moved.</h2>
+    <p class="cta-sub">One page. Twenty minutes. <strong>Free forever.</strong></p>
+    <div class="cta-wrap">
+      <a class="btn btn-lg" href="https://buildingaboveaverage.gumroad.com/l/muzwjz" target="_blank">
+        Get the BAA Sheet — Free
+      </a>
+      <p class="urgency">
+        <strong id="days-left">Sunday</strong> is in <strong id="days-num">—</strong> days. You can either have a plan or not.
+      </p>
+      <p class="guarantee">
+        100% free. Instant download. No card required.<br>
+        No subscription. No catch. Just the system.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="fl">© Building Above Average · buildingaboveaverage.com</span>
+    <span class="fc">DO LESS. ACCOMPLISH MORE.</span>
+    <span class="fr">@buildingaboveaverage</span>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+document.querySelectorAll('.faq-q').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var item=this.closest('.faq-item');
+    var open=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(i){i.classList.remove('open');});
+    if(!open) item.classList.add('open');
+  });
+});
+
+// Dynamic days until Sunday
+(function(){
+  var today=new Date();
+  var day=today.getDay(); // 0=Sun
+  var daysUntil=day===0?7:(7-day);
+  var el=document.getElementById('days-num');
+  var label=document.getElementById('days-left');
+  if(el) el.textContent=daysUntil;
+  if(label) label.textContent='This Sunday';
+})();
+</script>
+
+</body>
+</html>
